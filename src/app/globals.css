@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   CSS Custom Properties — Earthy & Balanced
+     terracotta  #CB734D → H=18,  S=55%, L=55%  — primary (Navbar, Hero, Contact, About)
+     sage green  #7DAA76 → H=114, S=22%, L=56%  — technical (Skills)
+     soft brown  #8B6B52 → H=24,  S=28%, L=43%  — professional (Experience, Education)
+     deep clay   #B05C3A → H=20,  S=50%, L=45%  — output (Projects)
+   Background: dark warm brown  Foreground: cream
+   Values stored as "H S% L%" for Tailwind opacity modifiers.
+───────────────────────────────────────────── */
+:root {
+  /* Dark earthy backgrounds */
+  --background:        25 20% 7%;
+  --surface:           25 18% 10%;
+  --card:              25 16% 13%;
+  --card-2:            25 16% 16%;
+
+  /* Cream foreground */
+  --foreground:        40 35% 88%;
+  --muted-foreground:  30 10% 54%;
+  --border:            25 14% 20%;
+
+  /* Highlight — pale sage near-white for important headline emphasis */
+  --highlight:         108 22% 91%;
+
+  /* Terracotta — primary */
+  --accent:            18 55% 55%;
+  --accent-light:      18 55% 68%;
+  --accent-dark:       18 50% 40%;
+  --accent-foreground: 18 20% 10%;
+
+  /* Sage green — skills / technical */
+  --secondary:         114 22% 56%;
+  --secondary-light:   114 22% 68%;
+
+  /* Soft brown — professional / work */
+  --tertiary:          24 28% 43%;
+  --tertiary-light:    24 28% 58%;
+
+  /* Deep clay — projects / output */
+  --quaternary:        20 50% 45%;
+  --quaternary-light:  20 50% 58%;
+
+  /* shadcn compat aliases */
+  --card-foreground: var(--foreground);
+  --muted: var(--surface);
+}
+
+/* ─────────────────────────────────────────────
+   Base reset
+───────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────
+   Grain overlay — reduced in light mode
+───────────────────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+[data-mode="light"] body::before {
+  opacity: 0.15;
+}
+
+/* ─────────────────────────────────────────────
+   Accent utilities (dynamic via CSS vars)
+───────────────────────────────────────────── */
+.text-gold      { color: hsl(var(--accent)); }
+.bg-gold        { background-color: hsl(var(--accent)); }
+.bg-gold-light  { background-color: hsl(var(--accent-light)); }
+.border-gold    { border-color: hsl(var(--accent)); }
+
+.text-secondary   { color: hsl(var(--secondary)); }
+.bg-secondary     { background-color: hsl(var(--secondary)); }
+.border-secondary { border-color: hsl(var(--secondary)); }
+
+.text-tertiary    { color: hsl(var(--tertiary)); }
+.bg-tertiary      { background-color: hsl(var(--tertiary)); }
+.border-tertiary  { border-color: hsl(var(--tertiary)); }
+
+.text-quaternary    { color: hsl(var(--quaternary)); }
+.bg-quaternary      { background-color: hsl(var(--quaternary)); }
+.border-quaternary  { border-color: hsl(var(--quaternary)); }
+
+.text-highlight     { color: hsl(var(--highlight)); }
+
+/* ─────────────────────────────────────────────
+   Loader spinner
+───────────────────────────────────────────── */
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 2px solid hsl(var(--border));
+  border-top-color: hsl(var(--accent));
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
+   Spotlight animation
+───────────────────────────────────────────── */
+@keyframes spotlight {
+  0%   { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar
+───────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent)); }

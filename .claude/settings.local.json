@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes --package-name \"portfolio\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s \"http://localhost:3000\")",
+      "Bash(find c:UsershaariProjectsClaudeCodePortfolio.next -name *.css)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(Get-Process node:*)",
+      "Bash(Stop-Process -Force)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"node.*next\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:3002/_next/static/css/app/layout.css)"
+    ]
+  }
+}
