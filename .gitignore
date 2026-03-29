@@ -9,7 +9,7 @@
 /coverage
 
 # next.js
-/.next/
+#/.next/
 /out/
 
 # production
@@ -80,7 +80,7 @@ pids
 .parcel-cache
 
 # Next.js build output
-.next
+#.next
 
 # Nuxt.js build / generate output
 .nuxt
@@ -88,7 +88,7 @@ dist
 
 # Gatsby files
 .cache/
-public
+#public
 
 # Storybook build outputs
 .out
